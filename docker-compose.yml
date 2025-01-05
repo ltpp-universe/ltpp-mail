@@ -13,7 +13,7 @@ services:
       - ./docker-data/dms/mail-logs/:/var/log/mail/
       - ./docker-data/dms/config/:/tmp/docker-mailserver/
       - /etc/localtime:/etc/localtime:ro
-      - /home/LTPP/Frontend/ssl/ltpp:/etc/letsencrypt/
+      - /home/LTPP/Frontend/ssl/ltpp/:/etc/letsencrypt/
     restart: always
     stop_grace_period: 1m   
     healthcheck:
