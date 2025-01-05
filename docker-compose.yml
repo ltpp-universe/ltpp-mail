@@ -1,9 +1,12 @@
 services:
   mailserver:
-    image: ccr.ccs.tencentyun.com/linux_environment/mailserver:latest
+    image: ccr.ccs.tencentyun.com/linux_environment/mailserver:1.0.0
     container_name: mailserver
     domainname: ltpp.vip
-    env_file: mailserver.env
+    environment:
+      - SSL_TYPE=manual 
+      - SSL_CERT_PATH=/tmp/dms/custom-certs/fullchain.pem
+      - SSL_KEY_PATH=/tmp/dms/custom-certs/privkey.pem
     ports:
       - "465:465"
       - "993:993"
@@ -13,7 +16,7 @@ services:
       - ./docker-data/dms/mail-logs/:/var/log/mail/
       - ./docker-data/dms/config/:/tmp/docker-mailserver/
       - /etc/localtime:/etc/localtime:ro
-      - /home/LTPP/Frontend/ssl/ltpp/:/etc/letsencrypt/
+      - /home/LTPP/Frontend/ssl/ltpp/:/tmp/dms/custom-certs/:ro
     restart: always
     stop_grace_period: 1m   
     healthcheck:
