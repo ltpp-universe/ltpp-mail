@@ -1,6 +1,6 @@
 services:
   mailserver:
-    image: ccr.ccs.tencentyun.com/linux_environment/mailserve:latest
+    image: ccr.ccs.tencentyun.com/linux_environment/mailserver:latest
     container_name: mailserver
     domainname: ltpp.vip
     env_file: mailserver.env
